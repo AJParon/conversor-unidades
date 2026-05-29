@@ -79,6 +79,7 @@ const unidades = {
   
   function carregarUnidades() {
     const tipo = grandeza.value;
+    alert("Trocou a grandeza");
   
     unidadeDe.innerHTML = "";
     unidadePara.innerHTML = "";
