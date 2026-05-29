@@ -67,7 +67,7 @@ const unidades = {
     }
   };
   
-  const grandeza = document.getElementById("grandezaaa");
+  const grandeza = document.getElementById("grandeza");
   const valor = document.getElementById("valor");
   const unidadeDe = document.getElementById("de");
   const unidadePara = document.getElementById("para");
@@ -79,7 +79,6 @@ const unidades = {
   
   function carregarUnidades() {
     const tipo = grandeza.value;
-    alert("Trocou a grandeza");
   
     unidadeDe.innerHTML = "";
     unidadePara.innerHTML = "";
@@ -88,7 +87,7 @@ const unidades = {
     valor.value = "";
   
     // Zera o resultado
-    resultado.innerHTML = "Resultado aparecerá aqui!";
+    resultado.innerHTML = "Resultado aparecerá aqui";
   
     if (tipo === "") {
       return;
