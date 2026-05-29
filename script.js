@@ -87,7 +87,7 @@ const unidades = {
     valor.value = "";
   
     // Zera o resultado
-    resultado.innerHTML = "Resultado aparecerá aqui!";
+    resultado.innerHTML = "Resultado aparecerá aqui!!";
   
     if (tipo === "") {
       return;
