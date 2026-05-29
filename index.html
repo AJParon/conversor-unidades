@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Conversor de Unidades</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0033cc;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 15px;
+      display: block;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      font-size: 16px;
+    }
+
+    .resultado {
+      margin-top: 25px;
+      padding: 15px;
+      background: #e8f0ff;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #0033cc;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #001f80;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Conversor de Unidades</h1>
+
+  <label>Grandeza</label>
+  <select id="grandeza" onchange="carregarUnidades()">
+    <option value="">Selecione</option>
+    <option value="potencia">Potência</option>
+    <option value="energia">Energia</option>
+    <option value="pressao">Pressão</option>
+    <option value="velocidade">Velocidade</option>
+    <option value="tempo">Tempo</option>
+    <option value="medida">Medida</option>
+    <option value="area">Área</option>
+    <option value="volume">Volume</option>
+    <option value="peso">Peso</option>
+  </select>
+
+  <label>Valor</label>
+  <input type="number" id="valor" placeholder="Digite o valor">
+
+  <label>De</label>
+  <select id="de"></select>
+
+  <label>Para</label>
+  <select id="para"></select>
+
+  <button onclick="converter()">Converter</button>
+
+  <div class="resultado" id="resultado">
+    Resultado aparecerá aqui
+  </div>
+</div>
+
+<script>
+const unidades = {
+  potencia: {
+    "CV": 0.736,
+    "HP": 0.746,
+    "kcal/h": 0.001162,
+    "kW": 1
+  },
+
+  energia: {
+    "J": 0.239,
+    "kcal": 4184,
+    "kW.h": 3600000,
+    "cal": 1
+  },
+
+  pressao: {
+    "bar": 1,
+    "kgf/cm²": 0.980665,
+    "kPa": 0.01,
+    "psi": 0.0689476,
+    "mca": 0.0980665,
+    "cmHg": 0.0133322
+  },
+
+  velocidade: {
+    "m/s": 1,
+    "km/h": 0.2777778,
+    "mi/h": 0.44704
+  },
+
+  tempo: {
+    "hora": 3600,
+    "min": 60,
+    "s": 1,
+    "ano": 31536000
+  },
+
+  medida: {
+    "m": 1,
+    "cm": 0.01,
+    "mm": 0.001,
+    "pé": 0.3048,
+    "milha": 1609.34,
+    "polegada": 0.0254
+  },
+
+  area: {
+    "m²": 1,
+    "cm²": 0.0001,
+    "mm²": 0.000001,
+    "hectare": 10000,
+    "Alqueire SP": 24200
+  },
+
+  volume: {
+    "m³": 1,
+    "cm³": 0.000001,
+    "Litros": 0.001,
+    "galão US": 0.003785,
+    "Bushel": 0.0352
+  },
+
+  peso: {
+    "kg": 1,
+    "Ton": 1000,
+    "Sacas 60 kg": 60
+  }
+};
+
+function carregarUnidades() {
+  const grandeza = document.getElementById("grandeza").value;
+  const selectDe = document.getElementById("de");
+  const selectPara = document.getElementById("para");
+
+  selectDe.innerHTML = "";
+  selectPara.innerHTML = "";
+
+  if (!grandeza) return;
+
+  const lista = Object.keys(unidades[grandeza]);
+
+  lista.forEach(unidade => {
+    selectDe.innerHTML += `<option value="${unidade}">${unidade}</option>`;
+    selectPara.innerHTML += `<option value="${unidade}">${unidade}</option>`;
+  });
+}
+
+function converter() {
+  const grandeza = document.getElementById("grandeza").value;
+  const valor = parseFloat(document.getElementById("valor").value);
+  const de = document.getElementById("de").value;
+  const para = document.getElementById("para").value;
+  const resultado = document.getElementById("resultado");
+
+  if (!grandeza || isNaN(valor) || !de || !para) {
+    resultado.innerHTML = "Preencha todos os campos.";
+    return;
+  }
+
+  const valorBase = valor * unidades[grandeza][de];
+  const valorConvertido = valorBase / unidades[grandeza][para];
+
+  resultado.innerHTML = `${valor} ${de} = ${valorConvertido.toFixed(4)} ${para}`;
+}
+</script>
+
+</body>
+</html>
