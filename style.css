@@ -1,18 +1,39 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    padding: 30px;
-    margin: 0;
-  }
-  
-  .container {
-    max-width: 600px;
-    margin: auto;
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px #ccc;
-  }
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  padding: 0;
+}
+
+.topo {
+  background: #0033cc;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+.logo-casp {
+  height: 42px;
+  width: auto;
+}
+
+.titulo-topo {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #ccc;
+}
   
   h1 {
     text-align: center;
