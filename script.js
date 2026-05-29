@@ -82,6 +82,11 @@ const unidades = {
   
     unidadeDe.innerHTML = "";
     unidadePara.innerHTML = "";
+  
+    // Zera o campo de valor
+    valor.value = "";
+  
+    // Zera o resultado
     resultado.innerHTML = "Resultado aparecerá aqui";
   
     if (tipo === "") {
